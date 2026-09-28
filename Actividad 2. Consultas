@@ -1,0 +1,326 @@
+ /* Selecciona a los clientes del año 2021 en base a la fecha de la factura */
+create view vista_clientes_2021
+as
+select distinct
+    c.id_cliente,
+    cast(c.nombre as varchar(100)) as nombre,
+    cast(c.apellido as varchar(100)) as apellido,
+    year(f.fecha) as año
+from cliente c
+inner join factura f
+    on c.id_cliente = f.id_cliente
+where year(f.fecha) = 2021;
+
+select * from vista_clientes_2021;
+
+/* Selecciona los clientes de 2022 (hasta el momento) en base a la fecha de la factura*/
+create view vista_clientes_2022
+as
+select distinct
+    c.id_cliente,
+    cast(c.nombre as varchar(100)) as nombre,
+    cast(c.apellido as varchar(100)) as apellido,
+    year(f.fecha) as año
+from cliente c
+inner join factura f
+    on c.id_cliente = f.id_cliente
+where year(f.fecha) = 2022;
+
+
+select * from vista_clientes_2022;
+
+/* Seleccionar los clientes de diciembre de 2021 */
+create view vista_clientes_diciembre_2021
+as
+select distinct
+    c.id_cliente,
+    cast(c.nombre as varchar(100)) as nombre,
+    cast(c.apellido as varchar(100)) as apellido,
+    f.fecha,
+    year(f.fecha) as año
+from cliente c
+inner join factura f
+    on c.id_cliente = f.id_cliente
+where f.fecha >= '2021-12-01'
+  and f.fecha < '2022-01-01';
+
+
+select * 
+from vista_clientes_diciembre_2021
+order by fecha;
+/*Qué compras han realizado los siguientes clientes */
+/* Valentina Anastasia Huerta Corral*/
+create view vista_compras_valentina
+as
+select
+    cast(c.nombre as varchar(100)) + ' ' +
+    cast(c.apellido as varchar(100)) as cliente,
+    f.fecha,
+    p.nombre as producto,
+    d.cantidad,
+    d.precio
+from cliente c
+inner join factura f
+    on c.id_cliente = f.id_cliente
+inner join detalle d
+    on f.id_detalle = d.id_detalle
+inner join producto p
+    on d.id_producto = p.id_producto
+where c.id_cliente = 2;
+
+select * from vista_compras_valentina
+order by fecha;
+/* Zayra Manuela Gómez López*/
+create view vista_compras_zayra
+as
+select
+    cast(c.nombre as varchar(100)) + ' ' +
+    cast(c.apellido as varchar(100)) as cliente,
+    f.fecha,
+    p.nombre as producto,
+    d.cantidad,
+    d.precio
+from cliente c
+inner join factura f
+    on c.id_cliente = f.id_cliente
+inner join detalle d
+    on f.id_detalle = d.id_detalle
+inner join producto p
+    on d.id_producto = p.id_producto
+where c.id_cliente = 17;
+
+
+select * from vista_compras_zayra
+order by fecha;
+/* Dante Eduardo Dolores Meza*/
+create view vista_compras_dante
+as
+select
+    cast(c.nombre as varchar(100)) + ' ' +
+    cast(c.apellido as varchar(100)) as cliente,
+    f.fecha,
+    p.nombre as producto,
+    d.cantidad,
+    d.precio
+from cliente c
+inner join factura f
+    on c.id_cliente = f.id_cliente
+inner join detalle d
+    on f.id_detalle = d.id_detalle
+inner join producto p
+    on d.id_producto = p.id_producto
+where c.id_cliente = 24;
+
+select * from vista_compras_dante
+order by fecha;
+/* Ana Maribel Cedillo Núñez*/
+create view vista_compras_ana_maribel
+as
+select
+    cast(c.nombre as varchar(100)) + ' ' +
+    cast(c.apellido as varchar(100)) as cliente,
+    f.fecha,
+    p.nombre as producto,
+    d.cantidad,
+    d.precio
+from cliente c
+inner join factura f
+    on c.id_cliente = f.id_cliente
+inner join detalle d
+    on f.id_detalle = d.id_detalle
+inner join producto p
+    on d.id_producto = p.id_producto
+where c.id_cliente = 4;
+
+
+select * from vista_compras_ana_maribel
+order by fecha;
+/*Rodrigo Ismael Silva Ugarte */
+create view vista_compras_rodrigo
+as
+select
+    cast(c.nombre as varchar(100)) + ' ' +
+    cast(c.apellido as varchar(100)) as cliente,
+    f.fecha,
+    p.nombre as producto,
+    d.cantidad,
+    d.precio
+from cliente c
+inner join factura f
+    on c.id_cliente = f.id_cliente
+inner join detalle d
+    on f.id_detalle = d.id_detalle
+inner join producto p
+    on d.id_producto = p.id_producto
+where c.id_cliente = 11;
+
+select * from vista_compras_rodrigo
+order by fecha;
+
+
+/* Seleccionar el producto que más ventas ha tenido*/
+create view vista_producto_mas_vendido
+as
+select top 1
+    p.id_producto,
+    cast(p.nombre as varchar(100)) as producto,
+    sum(d.cantidad) as total_vendido
+from producto p
+inner join detalle d
+    on p.id_producto = d.id_producto
+group by
+    p.id_producto,
+    cast(p.nombre as varchar(100))
+order by sum(d.cantidad) desc;
+
+select *from vista_producto_mas_vendido;
+
+/*Qué producto tienen más cantidad en stock */
+
+create view vista_producto_mayor_stock
+as
+select top 1
+    id_producto,
+    cast(nombre as varchar(100)) as producto,
+    stock
+from producto
+order by stock desc;
+
+
+select * from vista_producto_mayor_stock
+
+/*Ordenar, de la más antigua a la más reciente, las compras que ha habido en la tienda */
+
+create view vista_compras_tienda
+as
+select
+    f.id_factura,
+    cast(c.nombre as varchar(100)) + ' ' +
+    cast(c.apellido as varchar(100)) as cliente,
+    f.fecha,
+    cast(p.nombre as varchar(100)) as producto,
+    d.cantidad,
+    d.precio
+from factura f
+inner join cliente c
+    on f.id_cliente = c.id_cliente
+inner join detalle d
+    on f.id_detalle = d.id_detalle
+inner join producto p
+    on d.id_producto = p.id_producto;
+
+
+select *from vista_compras_tienda
+order by fecha asc;
+
+/* Ordenar alfabéticamente los nombres de todos los clientes de la tienda.*/
+
+create view vista_clientes_todos
+as
+select
+    id_cliente,
+    cast(nombre as varchar(100)) as nombre,
+    cast(apellido as varchar(100)) as apellido
+from cliente;
+
+
+select *from vista_clientes_todos
+order by nombre asc;
+
+/*Seleccionar cuáles productos pertenecen a cada categoría */
+
+create view vista_productos_categorias
+as
+select
+    cast(c.nombre as varchar(100)) as categoria,
+    p.id_producto,
+    cast(p.nombre as varchar(100)) as producto,
+    p.precio,
+    p.stock
+from categoria c
+inner join producto p
+    on c.id_categoria = p.id_categoria
+where cast(c.nombre as varchar(100)) in (
+    'Falda',
+    'Pantalón',
+    'Chamarra',
+    'Zapato',
+    'Accesorios'
+);
+
+select *from vista_productos_categorias
+order by categoria, producto;
+/* Seleccionar los encargados de las sucursales de la tienda Akira’s Boutique*/
+
+create view vista_encargados_sucursales
+as
+select
+    s.id_sucursal,
+    s.nombre_sucursal,
+    e.id_empleado,
+    cast(e.nombre as varchar(100)) as nombre,
+    cast(e.apellido_paterno as varchar(100)) as apellido_paterno,
+    cast(e.apellido_materno as varchar(100)) as apellido_materno
+from sucursales s
+inner join empleados e
+    on s.id_empleado = e.id_empleado;
+
+
+select *from vista_encargados_sucursales;
+
+/*  Seleccionar los empleados que trabajan en la sucursal de Akira’s Boutique: Constitución */
+create view vista_empleados_constitucion
+as
+select
+    e.id_empleado,
+    cast(e.nombre as varchar(100)) as nombre,
+    cast(e.apellido_paterno as varchar(100)) as apellido_paterno,
+    cast(e.apellido_materno as varchar(100)) as apellido_materno,
+    e.telefono,
+    e.correo_electronico
+from empleados e
+inner join sucursales s
+    on e.id_sucursal = s.id_sucursal
+where s.nombre_sucursal like '%constitución%';
+
+
+select *from vista_empleados_constitucion;
+
+
+/* ¿Qué clientes son mayores de 30 años?*/
+create view vista_clientes_mayores_30
+as
+select
+    id_cliente,
+    cast(nombre as varchar(100)) as nombre,
+    cast(apellido as varchar(100)) as apellido,
+    fec_nac,
+    datediff(year, fec_nac, getdate())
+    -
+    case
+        when dateadd(
+            year,
+            datediff(year, fec_nac, getdate()),
+            fec_nac
+        ) > getdate()
+        then 1
+        else 0
+    end as edad
+from cliente
+where
+    datediff(year, fec_nac, getdate())
+    -
+    case
+        when dateadd(
+            year,
+            datediff(year, fec_nac, getdate()),
+            fec_nac
+        ) > getdate()
+        then 1
+        else 0
+    end > 30;
+
+
+select *
+from vista_clientes_mayores_30
+order by edad desc;
