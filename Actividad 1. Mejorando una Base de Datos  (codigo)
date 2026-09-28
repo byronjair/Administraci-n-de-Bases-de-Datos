@@ -1,0 +1,109 @@
+create table empleados (
+	id_empleado int primary key identity(1,1),
+	nombre varchar(50) not null,
+	apellido_paterno varchar(50) not null,
+	apellido_materno varchar(50) not null,
+	direccion varchar(200) not null,
+	telefono varchar(20) not null,
+	edad int not null,
+	correo_electronico varchar(100) not null,
+	contrasena varchar(100) not null,
+	id_sucursal int
+);
+
+
+select * from empleados
+
+insert into empleados (nombre, apellido_paterno, apellido_materno, direccion, telefono, edad, correo_electronico, contrasena, id_sucursal)
+values
+('Sonia', 'Alejandra', 'Fernández Moreno', 'Calle Roble #507 Fracc. Las Mercedes', '4447831225', 35, 'sonia@akira.com', '123456', 1),
+('Fernando', 'Calderón', 'Ayala', 'Calle Dr. Jesús Díaz de León #438 col. Obraje', '4493780921', 38, 'fernando@akira.com', '123456', 2),
+('Daniela', 'Fernanda', 'Díaz Ordaz', 'Av. de la Marina #6204, Marina, local 35', '6692932059', 31, 'daniela@akira.com', '123456', 3),
+('Mario', 'Alberto', 'Jiménez Salcido', 'Av. Manuel J. Clouthier 525 col. Benito Juárez', '3337841230', 40, 'mario@akira.com', '123456', 4),
+('Yesenia', 'Guadalupe', 'Campos Rojo', 'Av. Melchor Ocampo #2528 Zona Centro', '6143906721', 36, 'yesenia@akira.com', '123456', 5),
+('Tamara', 'Alejandra', 'Bernal Ramos', 'Calle Constitución #106 Zona Centro', '6181962954', 34, 'tamara@akira.com', '123456', 6),
+('Samuel', 'Enrique', 'Barrios Enciso', 'Av. Hidalgo #338 Zacatecas Centro', '4929301250', 41, 'samuel@akira.com', '123456', 7),
+
+('Ana', 'López', 'García', 'Calle 1 #100', '5551111111', 25, 'ana1@akira.com', '123456', 1),
+('Luis', 'Pérez', 'Martínez', 'Calle 2 #200', '5552222222', 28, 'luis1@akira.com', '123456', 1),
+('María', 'García', 'Hernández', 'Calle 3 #300', '5553333333', 30, 'maria1@akira.com', '123456', 1),
+('Pedro', 'Ramírez', 'López', 'Calle 4 #400', '5554444444', 27, 'pedro1@akira.com', '123456', 1),
+('Carla', 'Soto', 'Torres', 'Calle 5 #500', '5555555555', 29, 'carla1@akira.com', '123456', 1),
+
+('José', 'Hernández', 'Ruiz', 'Calle 6 #600', '5556666666', 33, 'jose1@akira.com', '123456', 2),
+('Laura', 'Méndez', 'Castro', 'Calle 7 #700', '5557777777', 26, 'laura1@akira.com', '123456', 2),
+('Rafael', 'Ortiz', 'Vega', 'Calle 8 #800', '5558888888', 32, 'rafa1@akira.com', '123456', 2),
+('Diana', 'Torres', 'Mora', 'Calle 9 #900', '5559999999', 24, 'diana1@akira.com', '123456', 2),
+('Hugo', 'Vargas', 'Solis', 'Calle 10 #1000', '5551010101', 31, 'hugo1@akira.com', '123456', 2),
+
+('Marta', 'León', 'Cruz', 'Calle 11 #1100', '5551212121', 27, 'marta1@akira.com', '123456', 3),
+('Iván', 'Cruz', 'Reyes', 'Calle 12 #1200', '5551313131', 35, 'ivan1@akira.com', '123456', 3),
+('Elena', 'Ruiz', 'Mendoza', 'Calle 13 #1300', '5551414141', 28, 'elena1@akira.com', '123456', 3),
+('Raúl', 'Gómez', 'Navarro', 'Calle 14 #1400', '5551515151', 30, 'raul1@akira.com', '123456', 3),
+('Sofía', 'Núñez', 'Paz', 'Calle 15 #1500', '5551616161', 26, 'sofia1@akira.com', '123456', 3),
+
+('Erick', 'Luna', 'Rojas', 'Calle 16 #1600', '5551717171', 34, 'erick1@akira.com', '123456', 4),
+('Patricia', 'Reyes', 'Flores', 'Calle 17 #1700', '5551818181', 29, 'patricia1@akira.com', '123456', 4),
+('Kevin', 'Flores', 'Morales', 'Calle 18 #1800', '5551919191', 23, 'kevin1@akira.com', '123456', 4),
+('Nora', 'Castillo', 'Santos', 'Calle 19 #1900', '5552020202', 37, 'nora1@akira.com', '123456', 4),
+('Jorge', 'Salas', 'Peña', 'Calle 20 #2000', '5552121212', 32, 'jorge1@akira.com', '123456', 4),
+
+('Claudia', 'Peña', 'Ríos', 'Calle 21 #2100', '5552222333', 25, 'claudia1@akira.com', '123456', 5),
+('Diego', 'Rojas', 'Cruz', 'Calle 22 #2200', '5552323232', 28, 'diego1@akira.com', '123456', 5),
+('Fernanda', 'Luna', 'Vera', 'Calle 23 #2300', '5552424242', 30, 'fernanda1@akira.com', '123456', 5),
+('Óscar', 'Herrera', 'Mora', 'Calle 24 #2400', '5552525252', 36, 'oscar1@akira.com', '123456', 5),
+('Beatriz', 'Mora', 'León', 'Calle 25 #2500', '5552626262', 27, 'beatriz1@akira.com', '123456', 5),
+
+('Pablo', 'León', 'Soto', 'Calle 26 #2600', '5552727272', 31, 'pablo1@akira.com', '123456', 6),
+('Adriana', 'Vela', 'Gómez', 'Calle 27 #2700', '5552828282', 24, 'adriana1@akira.com', '123456', 6),
+('Samuel', 'Díaz', 'Lara', 'Calle 28 #2800', '5552929292', 33, 'samuel2@akira.com', '123456', 6),
+('Alicia', 'Campos', 'Ruiz', 'Calle 29 #2900', '5553030303', 28, 'alicia1@akira.com', '123456', 6),
+('Javier', 'Mendoza', 'Pérez', 'Calle 30 #3000', '5553131313', 35, 'javier1@akira.com', '123456', 6),
+
+('Gabriela', 'Cruz', 'Salinas', 'Calle 31 #3100', '5553232323', 26, 'gabriela1@akira.com', '123456', 7),
+('Ricardo', 'Silva', 'Torres', 'Calle 32 #3200', '5553333333', 30, 'ricardo1@akira.com', '123456', 7),
+('Valeria', 'Castro', 'Luna', 'Calle 33 #3300', '5553434343', 24, 'valeria1@akira.com', '123456', 7),
+('Héctor', 'Ramos', 'Vargas', 'Calle 34 #3400', '5553535353', 39, 'hector1@akira.com', '123456', 7),
+('Natalia', 'Peña', 'Soto', 'Calle 35 #3500', '5553636363', 27, 'natalia1@akira.com', '123456', 7);
+
+select * from empleados
+
+ create table sucursales (
+	id_sucursal int primary key identity(1,1),
+	nombre_sucursal varchar(100) not null,
+	id_empleado int not null,
+	direccion varchar(200) not null,
+	telefono varchar(20) not null,
+	ciudad varchar(100) not null,
+	estado varchar(100) not null
+);
+select * from sucursales
+
+
+insert into sucursales (nombre_sucursal, id_empleado, direccion, telefono, ciudad, estado)
+values
+('Akira’s Boutique: Las Mercedes', 1, 'Calle Roble #507 Fracc. Las Mercedes', '4447831225', 'San Luis Potosí', 'San Luis Potosí'),
+('Akira’s Boutique: Obraje', 2, 'Calle Dr. Jesús Díaz de León #438 col. Obraje', '4493780921', 'Aguascalientes', 'Aguascalientes'),
+('Akira’s Boutique: Galerías Mazatlán', 3, 'Av. de la Marina #6204, Marina, local 35', '6692932059', 'Mazatlán', 'Sinaloa'),
+('Akira’s Boutique: Zapopan', 4, 'Av. Manuel J. Clouthier 525 col. Benito Juárez', '3337841230', 'Zapopan', 'Jalisco'),
+('Akira´s Boutique: Melchor', 5, 'Av. Melchor Ocampo #2528 Zona Centro', '6143906721', 'Chihuahua', 'Chihuahua'),
+('Akira’s Boutique: Constitución', 6, 'Calle Constitución #106 Zona Centro', '6181962954', 'Durango', 'Durango'),
+('Akira’s Boutique: Centro', 7, 'Av. Hidalgo #338 Zacatecas Centro', '4929301250', 'Zacatecas', 'Zacatecas');
+
+select * from sucursales
+
+alter table empleados
+add constraint fk_empleados_sucursales
+foreign key (id_sucursal) references sucursales (id_sucursal)
+on update cascade
+on delete cascade
+
+
+alter table sucursales
+add constraint fk_sucursales_empleados
+foreign key (id_empleado) references empleados (id_empleado)
+on update cascade
+on delete cascade
+
+select * from empleados
+select * from sucursales
